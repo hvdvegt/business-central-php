@@ -183,7 +183,7 @@ class SDK
      */
     public function companies()
     {
-        return $this->query()->navigateTo('Company')->fetch();
+        return $this->query()->navigateTo('Companies')->fetch();
     }
 
     /**
