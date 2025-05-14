@@ -292,7 +292,7 @@ class Builder
             $keys = [$keys];
         }
 
-        $this->components[$component] = array_filter(['component' => $component, 'key' => array_filter($keys)]);
+        $this->components[strtolower($component)] = array_filter(['component' => $component, 'key' => array_filter($keys)]);
 
         return $this;
     }
