@@ -105,6 +105,68 @@
           </Collection>
         </Annotation>
       </EntityType>
+      <EntityType Name="customer">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Guid" Nullable="false" />
+        <Property Name="number" Type="Edm.String" MaxLength="20" />
+        <Property Name="displayName" Type="Edm.String" Nullable="false" MaxLength="100" />
+        <Property Name="type" Type="Microsoft.NAV.contactType" />
+        <Property Name="addressLine1" Type="Edm.String" MaxLength="100" />
+        <Property Name="addressLine2" Type="Edm.String" MaxLength="50" />
+        <Property Name="city" Type="Edm.String" MaxLength="30" />
+        <Property Name="state" Type="Edm.String" MaxLength="30" />
+        <Property Name="country" Type="Edm.String" MaxLength="10" />
+        <Property Name="postalCode" Type="Edm.String" MaxLength="20" />
+        <Property Name="phoneNumber" Type="Edm.String" MaxLength="30" />
+        <Property Name="email" Type="Edm.String" MaxLength="80" />
+        <Property Name="website" Type="Edm.String" MaxLength="80" />
+        <Property Name="salespersonCode" Type="Edm.String" MaxLength="20" />
+        <Property Name="balanceDue" Type="Edm.Decimal" Scale="Variable" />
+        <Property Name="creditLimit" Type="Edm.Decimal" Scale="Variable" />
+        <Property Name="taxLiable" Type="Edm.Boolean" />
+        <Property Name="taxAreaId" Type="Edm.Guid" />
+        <Property Name="taxAreaDisplayName" Type="Edm.String" />
+        <Property Name="taxRegistrationNumber" Type="Edm.String" />
+        <Property Name="currencyId" Type="Edm.Guid" />
+        <Property Name="currencyCode" Type="Edm.String" />
+        <Property Name="paymentTermsId" Type="Edm.Guid" />
+        <Property Name="shipmentMethodId" Type="Edm.Guid" />
+        <Property Name="paymentMethodId" Type="Edm.Guid" />
+        <Property Name="blocked" Type="Microsoft.NAV.customerBlocked" />
+        <Property Name="lastModifiedDateTime" Type="Edm.DateTimeOffset" />
+        <NavigationProperty Name="currency" Type="Microsoft.NAV.currency" ContainsTarget="true">
+          <ReferentialConstraint Property="currencyId" ReferencedProperty="id" />
+        </NavigationProperty>
+        <NavigationProperty Name="paymentTerm" Type="Microsoft.NAV.paymentTerm" ContainsTarget="true">
+          <ReferentialConstraint Property="paymentTermsId" ReferencedProperty="id" />
+        </NavigationProperty>
+        <NavigationProperty Name="shipmentMethod" Type="Microsoft.NAV.shipmentMethod" ContainsTarget="true">
+          <ReferentialConstraint Property="shipmentMethodId" ReferencedProperty="id" />
+        </NavigationProperty>
+        <NavigationProperty Name="paymentMethod" Type="Microsoft.NAV.paymentMethod" ContainsTarget="true">
+          <ReferentialConstraint Property="paymentMethodId" ReferencedProperty="id" />
+        </NavigationProperty>
+        <NavigationProperty Name="customerFinancialDetail" Type="Microsoft.NAV.customerFinancialDetail" Partner="customer" ContainsTarget="true">
+          <ReferentialConstraint Property="id" ReferencedProperty="id" />
+        </NavigationProperty>
+        <NavigationProperty Name="picture" Type="Microsoft.NAV.picture" Partner="customer" ContainsTarget="true">
+          <ReferentialConstraint Property="id" ReferencedProperty="id" />
+        </NavigationProperty>
+        <NavigationProperty Name="defaultDimensions" Type="Collection(Microsoft.NAV.defaultDimension)" Partner="customer" ContainsTarget="true">
+          <ReferentialConstraint Property="id" ReferencedProperty="parentId" />
+        </NavigationProperty>
+        <NavigationProperty Name="agedAccountsReceivable" Type="Microsoft.NAV.agedAccountsReceivable" Partner="customer" ContainsTarget="true">
+          <ReferentialConstraint Property="id" ReferencedProperty="customerId" />
+        </NavigationProperty>
+        <NavigationProperty Name="contactsInformation" Type="Collection(Microsoft.NAV.contactInformation)" Partner="customer" ContainsTarget="true">
+          <ReferentialConstraint Property="id" ReferencedProperty="relatedId" />
+        </NavigationProperty>
+        <NavigationProperty Name="documentAttachments" Type="Collection(Microsoft.NAV.documentAttachment)" Partner="customer" ContainsTarget="true">
+          <ReferentialConstraint Property="id" ReferencedProperty="parentId" />
+        </NavigationProperty>
+      </EntityType>
       <EntityType Name="subscriptions">
         <Key>
           <PropertyRef Name="subscriptionId" />
