@@ -148,7 +148,7 @@ trait Filters
      * @return $this|Builder
      * @author Morten K. Harders 🐢 <mh@coolrunner.dk>
      */
-    public function whereDateTime(string $property, $operator, DateTime $value = null, string $before = 'and')
+    public function whereDateTime(string $property, $operator, ?DateTime $value = null, string $before = 'and')
     {
         if ($value === null) {
             $value    = $operator;
@@ -177,7 +177,7 @@ trait Filters
      * @return $this|Builder
      * @author Morten K. Harders 🐢 <mh@coolrunner.dk>
      */
-    public function orWhereDateTime(string $property, $operator, DateTime $value = null, string $before = 'or')
+    public function orWhereDateTime(string $property, $operator, ?DateTime $value = null, string $before = 'or')
     {
         return $this->whereDateTime($property, $operator, $value, $before);
     }

@@ -38,7 +38,7 @@ class EntityCollection implements \ArrayAccess, \Iterator, \JsonSerializable, Js
     protected $collection    = [];
     protected $auto_paginate = false;
 
-    public function __construct(Builder $query, EntitySet $type = null, array $items = [])
+    public function __construct(Builder $query, ?EntitySet $type = null, array $items = [])
     {
         $this->query         = $query;
         $this->type          = $type;

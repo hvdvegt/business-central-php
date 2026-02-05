@@ -55,7 +55,7 @@ class Builder
         $this->limit = $sdk->option('default_collection_size', 20);
     }
 
-    public function sendRequest(string $method, array $data = null, array $headers = [], array $options = [])
+    public function sendRequest(string $method, ?array $data = null, array $headers = [], array $options = [])
     {
         $uri  = $this->getUri($options['no_ext'] ?? false);
         $time = microtime(true);
